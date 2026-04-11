@@ -1,42 +1,30 @@
 #include<stdio.h>
-int main()
+#include<stdlib.h>
+main()
 {
-	int a[20][20],b[20][20],add[20][20],row,col,i,j;
-	printf("Enter how many rows and columns :");
-	scanf("%d%d",&row,&col);
-	printf("Enter elements of the first matrix :");
-	for(i=1; i<=row; i++)
+	int *a[10],r,c,i,j;
+	printf("Enter the order of matrix\n");
+	scanf("%d%d",&r,&c);
+	
+	printf("Enter matrix elements\n");
+	for(i=0;i<r;i++)
 	{
-		for(j=1; j<=col; j++)
+		/**** dynamically allocate memory for every row ****/
+		a[i]=(int *)malloc(c*sizeof(int));
+		for(j=0;j<c;j++)
 		{
-			scanf("%d",&a[i][j]);
+			scanf("%d",a[i]+j);
 		}
 	}
 
-	printf("Enter elements of the second matrix :");
-        for(i=1; i<=row; i++)
-        {
-                for(j=1; j<=col; j++)
-                {
-                        scanf("%d",&b[i][j]);
-                }
-        }
-
-	for(i=1; i<=row; i++)
-        {
-                for(j=1; j<=col; j++)
-                {
-                        add[i][j]=a[i][j]+b[i][j];
-                }
-        }
-
-	printf("Addition of two matrix :");
-        for(i=1; i<=row; i++)
-        {
+	/****** Display Matrix ******/
+	printf("The matrix is as below\n");
+	for(i=0;i<r;i++)
+	{
+		for(j=0;j<c;j++)
+		{
+			printf("%d\t",*(*(a+i)+j));
+		}
 		printf("\n");
-                for(j=1; j<=col; j++)
-                {
-                        printf("\t%d",add[i][j]);
-                }
-        }
+	}
 }
